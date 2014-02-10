@@ -2,7 +2,7 @@
 # System authorization information
 auth --enableshadow --passalgo=sha512
 # Use network installation
-url --url="http://http://mirror.cc.vt.edu/pub/fedora/linux/releases/20/Fedora/x86_64/os"
+url --url="http://mirror.anl.gov/pub/fedora/linux/releases/20/Fedora/x86_64/os/"
 # Run the Setup Agent on first boot
 firstboot --enable
 ignoredisk --only-use=sda

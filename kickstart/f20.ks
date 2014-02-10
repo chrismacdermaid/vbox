@@ -1,8 +1,16 @@
 #platform=x86, AMD64, or Intel EM64T
 
-repo --name=released --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-20&arch=$basearch
+install
+
+# Disable anything graphical
+skipx
+text
+
+## Main install repo
+repo --name=released --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-20&arch=x86_64
+
 # To include updates, use the following "repo" (enabled by default)
-repo --name=updates --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f20&arch=$basearch
+repo --name=updates --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f20&arch=x86_64
 
 # To compose against rawhide, use the following "repo" (disabled by default)
 #repo --name=rawhide --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=rawhide&arch=$basearch
@@ -38,10 +46,6 @@ rootpw --iscrypted $1$lqtO5Lt6$FY9GNGIWtIio48P2IIiE50
 
 # System authorization information
 auth --enableshadow --passalgo=sha512
-
-# Disable anything graphical
-skipx
-text
 
 # System timezone (http://vpodzime.fedorapeople.org/timezones_list.txt)
 timezone America/New_York

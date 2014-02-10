@@ -1,14 +1,16 @@
 ## Unattended install of minimal fedora 20
 
+## Do an install
 install
 
 # Disable anything graphical
 skipx
 text
 
+## URL for installation
 url --url=http://mirrors.mit.edu/fedora/linux/releases/20/Fedora/x86_64/os/
 
-## Main install repo
+## Main repos
 repo --name=released --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-20&arch=x86_64
 
 # To include updates, use the following "repo" (enabled by default)
@@ -16,7 +18,6 @@ repo --name=updates --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?rep
 
 # To compose against rawhide, use the following "repo" (disabled by default)
 #repo --name=rawhide --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=rawhide&arch=$basearch
-
 
 # Run the Setup Agent on first boot
 firstboot --enable
@@ -52,9 +53,6 @@ auth --enableshadow --passalgo=sha512
 # System timezone (http://vpodzime.fedorapeople.org/timezones_list.txt)
 timezone America/New_York
 
-## User Management
-user --groups=wheel --homedir=/home/macdercm --name=macdercm --password=$1$lqtO5Lt6$FY9GNGIWtIio48P2IIiE50 --shell=/bin/bash
-
 # Partition clearing information
 zerombr
 clearpart --all
@@ -64,9 +62,13 @@ part swap --size=512
 # System bootloader configuration
 bootloader --location=mbr --boot-drive=sda --timeout=5
 
-
 %packages
+@admin-tools
 @core
+git
+zsh
+tcl
+tcl-devel
 %end
 
 %post
@@ -79,19 +81,26 @@ EOL
 
 cat <<EOL >> /etc/rc.local
 if [ ! -d /root/.ssh ] ; then
-    mkdir -p /root/.ssh
-    chmod 0700 /root/.ssh
+mkdir -p /root/.ssh
+chmod 0700 /root/.ssh
 fi
+EOL
 
 cat <<EOL >> /etc/ssh/sshd_config
 UseDNS  no
 PermitRootLogin without-password
-AllowUsers root macdercm
+AllowUsers root
 MaxStartups 3:50:10
 EOL
+
+## Setup SSH-key access
+mkdir -p /root/.ssh
+chmod 0700 /root/.ssh
 
 cat << EOL >> /root/.ssh/authorized_keys
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDlR4Vv1I6IU8Avz/kx6aroF3bUeyECWGLu+00CELU6VKLi/PwOeQj3BXQImywLue8XtqOSpKXbZdEPlmrfzSFmmGYksNd2dIfJ8Ih4zXUORCzGnBRvmPXej14P9lhPON8po3o8sS5vN7W9TOY9+COQ2o6WVHAU/Dv97a0vO5hRk+7JUVlTcS95IAd8JYJrwpk0iouUq8mh0pDAE7GQr0o6KCvPSLJZZgcxzpPrvrEgCs6GqKPUdTHaDAydBw1gu8BNsaKJD85LrE0pKO3Hz1a/DvB+ci5O+aL+k0wJUjyQL2+RYwuWehHvp/f5URy16jmlU0plnNs5Z8aFSISLSH8f Fedora 20 Vbox Keys
 EOL
 
 %end
+
+reboot

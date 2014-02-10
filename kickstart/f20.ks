@@ -43,7 +43,7 @@ firewall --enabled --service=ssh
 # Services
 services --enabled=network,sshd
 
-# Root password
+# Root password (letmein)
 rootpw --iscrypted $1$lqtO5Lt6$FY9GNGIWtIio48P2IIiE50
 
 # System authorization information
@@ -53,13 +53,17 @@ auth --enableshadow --passalgo=sha512
 timezone America/New_York
 
 ## User Management
-user --groups=wheel --homedir=/home/macdercm --name=macdercm --password=$1$RNDbLvyG$bDyopBx/V23517Lzdar7G1 --shell=/bin/bash
-
-# System bootloader configuration
-bootloader --location=mbr --boot-drive=sda
+user --groups=wheel --homedir=/home/macdercm --name=macdercm --password=$1$lqtO5Lt6$FY9GNGIWtIio48P2IIiE50 --shell=/bin/bash
 
 # Partition clearing information
-clearpart --none --initlabel
+zerombr
+clearpart -all
+part / --fstype=ext4 --grow --size=2048 --asprimary
+part swap --size=512
+
+# System bootloader configuration
+bootloader --location=mbr --boot-drive=sda --timeout=5
+
 
 %packages
 @core
@@ -82,6 +86,8 @@ fi
 cat <<EOL >> /etc/ssh/sshd_config
 UseDNS  no
 PermitRootLogin without-password
+AllowUsers root macdercm
+MaxStartups 3:50:10
 EOL
 
 cat << EOL >> /root/.ssh/authorized_keys

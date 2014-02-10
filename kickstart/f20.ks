@@ -6,7 +6,7 @@ install
 skipx
 text
 
---url=http://mirrors.mit.edu/fedora/linux/releases/20/Everything/x86_64/os/
+url --url=http://mirrors.mit.edu/fedora/linux/releases/20/Everything/x86_64/os/
 
 ### Main install repo
 #repo --name=released --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-20&arch=x86_64

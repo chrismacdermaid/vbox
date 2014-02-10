@@ -1,10 +1,11 @@
 default menu.c32
 prompt 1
-timeout 10
+timeout 20
+default Fedora20
 
 MENU TITLE PXE Menu
 
-LABEL Fedora 20
+LABEL Fedora20
         MENU LABEL Fedora 20
         KERNEL ./images/Fedora/x86_64/20/vmlinuz
         APPEND initrd=./images/Fedora/x86_64/20/initrd.img ip=dhcp ks=https://raw.github.com/chrismacdermaid/vbox/master/kickstart/f20.ks xdriver=vesa nomodeset ramdisk_size=100000

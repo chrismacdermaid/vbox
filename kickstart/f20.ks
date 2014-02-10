@@ -1,11 +1,12 @@
 #platform=x86, AMD64, or Intel EM64T
-#version=DEVEL
 
-install
+repo --name=released --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-20&arch=$basearch
+# To include updates, use the following "repo" (enabled by default)
+repo --name=updates --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f20&arch=$basearch
 
-# Install from a friendly mirror and add updates
-url --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-20&arch=$basearch
-repo --name=updates
+# To compose against rawhide, use the following "repo" (disabled by default)
+#repo --name=rawhide --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=rawhide&arch=$basearch
+
 
 # Run the Setup Agent on first boot
 firstboot --enable
@@ -15,7 +16,7 @@ ignoredisk --only-use=sda
 keyboard --vckeymap=us --xlayouts='us'
 
 # System language
-lang en_GB.UTF-8
+lang C
 
 ## Network information
 # for STATIC IP: uncomment and configure
@@ -27,7 +28,10 @@ network --hostname=localhost.localdomain
 
 # Firewall/Security
 selinux --disabled
-firewall --disabled
+firewall --enabled --service=ssh
+
+# Services
+services --enabled=network,sshd
 
 # Root password
 rootpw --iscrypted $1$lqtO5Lt6$FY9GNGIWtIio48P2IIiE50
@@ -56,3 +60,22 @@ clearpart --none --initlabel
 %end
 
 %post
+
+cat <<EOL > /etc/sysconfig/network-scripts/ifcfg-eth0
+ONBOOT=yes
+DEVICE=eth0
+BOOTPROTO=dhcp
+EOL
+
+cat <<EOL >> /etc/rc.local
+if [ ! -d /root/.ssh ] ; then
+    mkdir -p /root/.ssh
+    chmod 0700 /root/.ssh
+fi
+
+cat <<EOL >> /etc/ssh/sshd_config
+UseDNS  no
+PermitRootLogin without-password
+EOL
+
+%end

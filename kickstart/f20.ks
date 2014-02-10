@@ -1,10 +1,12 @@
-#platform=x86, AMD64, or Intel EM64T
+## Unattended install of minimal fedora 20
 
 install
 
 # Disable anything graphical
 skipx
 text
+
+--url=http://mirrors.mit.edu/fedora/linux/releases/20/Everything/x86_64/os/
 
 ## Main install repo
 repo --name=released --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-20&arch=x86_64

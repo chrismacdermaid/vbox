@@ -33,7 +33,7 @@ lang C
 # network --onboot=yes --device=eth0 --bootproto=static --ip=192.168.###.### --netmask=255.255.255.0 --gateway=192.168.###.### --nameserver=###.###.###.### --noipv6 --hostname=$$$
 
 # for DHCP
-network --bootproto=dhcp --device=eth0 --noipv6 --activate --device=eth0 -onboot=on
+network --bootproto=dhcp --device=eth0 --noipv6 --activate --device=eth0 --onboot=on
 network --hostname=localhost.localdomain
 
 # Firewall/Security

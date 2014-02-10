@@ -1,4 +1,5 @@
-#VERSION=core
+#platform=x86, AMD64, or Intel EM64T
+#version=DEVEL
 
 install
 
@@ -24,7 +25,8 @@ lang en_GB.UTF-8
 network --bootproto=dhcp --device=eth0 --noipv6 --activate --device=eth0 -onboot=on
 network --hostname=localhost.localdomain
 
-# Firewall
+# Firewall/Security
+selinux --disabled
 firewall --disabled
 
 # Root password
@@ -52,3 +54,5 @@ clearpart --none --initlabel
 %packages
 @core
 %end
+
+%post

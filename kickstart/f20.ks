@@ -57,7 +57,7 @@ user --groups=wheel --homedir=/home/macdercm --name=macdercm --password=$1$lqtO5
 
 # Partition clearing information
 zerombr
-clearpart -all
+clearpart --all
 part / --fstype=ext4 --grow --size=2048 --asprimary
 part swap --size=512
 

@@ -63,12 +63,13 @@ part swap --size=512
 bootloader --location=mbr --boot-drive=sda --timeout=5
 
 %packages
-@admin-tools
 @core
 git
 zsh
 tcl
 tcl-devel
+screen
+net-tools
 %end
 
 %post

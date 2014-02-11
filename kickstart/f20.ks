@@ -31,10 +31,10 @@ lang C
 
 ## Network information
 # for STATIC IP: uncomment and configure
- network --onboot=yes --device=eth0 --bootproto=static --ip=10.42.0.20 --netmask=255.255.255.0 --gateway=10.42.0.1 --nameserver=155.247.225.230 --noipv6
+# network --onboot=yes --device=eth0 --bootproto=static --ip=10.42.0.20 --netmask=255.255.255.0 --gateway=10.42.0.1 --nameserver=155.247.225.230 --noipv6
 
 # for DHCP
-#network --bootproto=dhcp --noipv6 --activate --onboot=on
+network --bootproto=dhcp --noipv6 --activate --onboot=on
 network --hostname=localhost.localdomain
 
 # Firewall/Security

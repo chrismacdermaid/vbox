@@ -69,6 +69,9 @@ tcl
 tcl-devel
 screen
 net-tools
+openmpi
+lammps-openmpi
+lammps-doc
 %end
 
 %post
@@ -103,7 +106,6 @@ EOL
 
 ## Install Lammps Repo
 yum localinstall --nogpgcheck http://git.icms.temple.edu/rpm/fedora/lammps-fedora-repo-1-2.noarch.rpm
-yum install lammps-openmpi lammps-doc lammps-python
 
 %end
 

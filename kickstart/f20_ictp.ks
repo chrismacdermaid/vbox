@@ -67,7 +67,6 @@ bootloader --location=mbr --boot-drive=sda --timeout=5
 
 %packages
 @core
-@base
 @lxde-desktop
 @hardware-support
 @input-methods

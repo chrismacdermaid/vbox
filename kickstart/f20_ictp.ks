@@ -73,7 +73,7 @@ bootloader --location=mbr --boot-drive=sda --timeout=5
 @lxde-desktop
 @lxde-apps
 @hardware-support
-@input-methods
+@input-method
 git
 tcl
 tcl-devel
@@ -88,6 +88,8 @@ lammps-doc
 emacs
 vim
 nano
+rlwrap
+htop
 
 # save some space
 -mpage
@@ -119,7 +121,9 @@ nano
 notification-daemon
 -xfce4-notifyd
 
-# save some space
+# save more space
+-sylpheed
+-pidgin
 -autofs
 -acpid
 -gimp-help
@@ -148,11 +152,11 @@ notification-daemon
 
 ## Add a user (pass: letmein)
 /usr/sbin/useradd -m -p $(openssl passwd -1 letmein) ictp
-/usr/sbin/passwd -d ictp > /dev/null
-usermod -aG wheel > /dev/null
+/bin/passwd -d ictp > /dev/null
+/usr/sbin/usermod -aG wheel > /dev/null
 
 ## Remove root password lock
-passwd -d root > /dev/null
+/bin/passwd -d root > /dev/null
 
 cat >> /etc/rc.d/init.d/livesys << EOF
 # disable screensaver locking and make sure gamin gets started
@@ -174,8 +178,8 @@ FOE
 sed -i 's/# autologin=.*/autologin=ictp/g' /etc/lxdm/lxdm.conf
 
 # create default config for clipit, otherwise it displays a dialog on startup
-mkdir -p /home/liveuser/.config/clipit
-cat > /home/liveuser/.config/clipit/clipitrc  << FOE
+mkdir -p /home/ictp/.config/clipit
+cat > /home/ictp/.config/clipit/clipitrc  << FOE
 [rc]
 use_copy=true
 save_uris=true

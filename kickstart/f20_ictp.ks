@@ -156,7 +156,6 @@ notification-daemon
 ## Remove root password lock
 /bin/passwd -d root > /dev/null
 
-cat >> /etc/rc.d/init.d/livesys << EOF
 # disable screensaver locking and make sure gamin gets started
 cat > /etc/xdg/lxsession/LXDE/autostart << FOE
 /usr/libexec/gam_server

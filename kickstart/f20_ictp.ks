@@ -59,7 +59,7 @@ timezone America/New_York
 # Partition clearing information
 zerombr
 clearpart --all
-part / --fstype=ext4 --grow --size=2048 --asprimary
+part / --fstype=ext4 --grow --size=4096 --asprimary
 part swap --size=512
 
 # System bootloader configuration
@@ -67,7 +67,10 @@ bootloader --location=mbr --boot-drive=sda --timeout=5
 
 %packages
 @core
+@base
 @lxde-desktop
+@hardware-support
+@input-methods
 git
 tcl
 tcl-devel
@@ -84,7 +87,10 @@ vim
 nano
 %end
 
-%post
+%post --interpreter /bin/bash --log /root/post-install.log
+
+## Add a user
+/usr/sbin/useradd -m -p $1$lqtO5Lt6$FY9GNGIWtIio48P2IIiE50 ictp
 
 cat <<EOL > /etc/sysconfig/network-scripts/ifcfg-eth0
 ONBOOT=yes
@@ -108,6 +114,7 @@ EOL
 
 cat <<EOL >>  /etc/sysconfig/desktop
 DISPLAYMANAGER=/usr/sbin/lxdm
+PREFERRED=/usr/bin/startlxde
 EOL
 
 ## Setup SSH-key access

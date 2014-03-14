@@ -101,7 +101,6 @@ htop
 -autofs
 # smartcards won't really work on the livecd.
 -coolkey
--wget
 
 # qlogic firmwares
 -ql2100-firmware

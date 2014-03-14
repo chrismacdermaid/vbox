@@ -73,7 +73,6 @@ bootloader --location=mbr --boot-drive=sda --timeout=5
 @lxde-desktop
 @lxde-apps
 @hardware-support
-@input-method
 git
 tcl
 tcl-devel
@@ -152,7 +151,7 @@ notification-daemon
 ## Add a user (pass: letmein)
 /usr/sbin/useradd -m -p $(openssl passwd -1 letmein) ictp
 /bin/passwd -d ictp > /dev/null
-/usr/sbin/usermod -aG wheel > /dev/null
+/usr/sbin/usermod -aG wheel ictp > /dev/null
 
 ## Remove root password lock
 /bin/passwd -d root > /dev/null
@@ -164,13 +163,6 @@ cat > /etc/xdg/lxsession/LXDE/autostart << FOE
 @lxpanel --profile LXDE
 @pcmanfm --desktop --profile LXDE
 /usr/libexec/notification-daemon
-FOE
-
-# set up preferred apps 
-cat > /etc/xdg/libfm/pref-apps.conf << FOE 
-[Preferred Applications]
-WebBrowser=firefox.desktop
-MailClient=sylpheed.desktop
 FOE
 
 # set up auto-login for ictp

@@ -78,17 +78,36 @@ tcl
 tcl-devel
 screen
 net-tools
+emacs
+vim
+nano
+rlwrap
+htop
+tcsh
+
+##vmd
+tcsh
+mesa-libGLU
+tk-devel
+
+## Lammps
 openmpi
 lammps
 lammps-openmpi
 lammps-python
 lammps-common
 lammps-doc
-emacs
-vim
-nano
-rlwrap
-htop
+
+## For Vbox Guest Additions
+kernel-devel
+kernel-headers
+dkms
+make
+bzip2
+
+## Development
+gcc
+gcc-c++
 
 # save some space
 -mpage

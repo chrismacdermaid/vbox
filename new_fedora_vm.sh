@@ -6,7 +6,7 @@ VBOXMANAGE=`which VBoxManage`
 VBOXBASE='/data/VirtualBox VMs'
 VBOXTFTP="${VBOXBASE}/TFTP"
 
-RELEASE="20"
+RELEASE="21"
 RANDSTR=`cat /dev/urandom|tr -cd "[:alnum:]" |head -c 5`
 PXELINUX="./pxelinux.0"
 

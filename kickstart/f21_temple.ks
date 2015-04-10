@@ -8,7 +8,7 @@ skipx
 text
 
 ## URL for installation
-url --url=http://mirrors.mit.edu/fedora/linux/releases/21/Fedora/x86_64/os/
+url --url=http://mirrors.mit.edu/fedora/linux/releases/21/Server/x86_64/os/
 
 ## Main repos
 repo --name=released --mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=fedora-21&arch=x86_64

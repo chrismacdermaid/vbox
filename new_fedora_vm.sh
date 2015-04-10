@@ -24,7 +24,7 @@ ln -rs ${PXELINUX} ./${VM}.pxe
 
 ## VB
 ${VBOXMANAGE} createvm --name "${VM}" --ostype "Fedora_64" --register && \
-${VBOXMANAGE} createhd --filename "${VBOXBASE}/${VM}/${VM}.vdi" --size 4096 && \
+${VBOXMANAGE} createhd --filename "${VBOXBASE}/${VM}/${VM}.vdi" --size 8192 && \
 ${VBOXMANAGE} storagectl "${VM}" --name "SATA Controller" --add sata \
     --controller IntelAHCI && \
 ${VBOXMANAGE} storageattach "${VM}" --storagectl "SATA Controller" --port 0 \

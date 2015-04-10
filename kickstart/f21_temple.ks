@@ -59,7 +59,7 @@ timezone America/New_York
 # Partition clearing information
 zerombr
 clearpart --all
-part / --fstype=ext4 --grow --size=4096 --asprimary
+part / --fstype=ext4 --grow --size=7168 --asprimary
 part swap --size=512
 
 # System bootloader configuration
